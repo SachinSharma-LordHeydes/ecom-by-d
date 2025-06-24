@@ -1,5 +1,7 @@
 "use client";
 
+import Orders from "@/components/acccount/Orders";
+import ProfileAndAddress from "@/components/acccount/ProfileAndAddress";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Label } from "@/components/ui/label";
@@ -16,8 +18,6 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import Orders from "../acccount/Orders";
-import ProfileAndAddress from "../acccount/ProfileAndAddress";
 
 const Account = () => {
   const [activeTab, setActiveTab] = useState("profile");

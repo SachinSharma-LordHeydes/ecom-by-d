@@ -26,7 +26,7 @@ const ProductSchema = new mongoose.Schema<IProduct>(
         type: String,
         required: true,
       },
-     ],
+    ],
     discount: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Discount",
@@ -47,20 +47,5 @@ const ProductSchema = new mongoose.Schema<IProduct>(
   { timestamps: true }
 );
 
-export const Product = mongoose.model<IProduct>("Product", ProductSchema);
-
-// productName
-// productPrice
-// productDescription
-// productImages
-// productQuantity
-// discountModel:discountID
-// //productType:["Lmited","premium","general"]
-// ratingAndReviews:ratingAndReviewID
-// productCatagory
-// brand
-// status:["pending","shipping","dilivered"]
-// //tags
-// likedProduct
-// unlikedProduct
-// productID
+export const Product =
+  mongoose.models.Product || mongoose.model<IProduct>("Product", ProductSchema);

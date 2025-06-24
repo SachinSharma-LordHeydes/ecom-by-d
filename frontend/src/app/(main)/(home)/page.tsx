@@ -2,9 +2,8 @@ import BrandOffersSwiper from "@/components/BrandOffersSwiper";
 import CategoriesSection from "@/components/CategoriesSection";
 import CategoryGrid from "@/components/CategoryGrid";
 import FeaturedProducts from "@/components/FeaturedProducts";
-import OffersSection from "@/components/OffersSection";
 import ProductCarousel from "@/components/ProductCarousel";
-import { homeProducts } from "@/data/productData";
+import { homeProducts, sportsProducts } from "@/data/productData";
 
 const page = () => {
   return (
@@ -20,8 +19,13 @@ const page = () => {
           products={homeProducts}
           className="mt-6"
         />
+        <ProductCarousel
+          title="Sports"
+          products={sportsProducts}
+          className="mt-6"
+        />
         <CategoryGrid />
-        <OffersSection/>
+        {/* <OffersSection/> */}
         <FeaturedProducts />
       </div>
     </div>

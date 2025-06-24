@@ -1,4 +1,5 @@
-import Electronics from "@/components/pages/Electronics";
+import Electronics from "@/pages/Electronics";
+
 
 const page = () => {
   return (

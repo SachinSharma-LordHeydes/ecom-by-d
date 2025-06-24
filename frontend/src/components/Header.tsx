@@ -2,27 +2,19 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Heart, Menu, Search, ShoppingCart, User } from "lucide-react";
+import { useTranslation } from "@/hooks/useTranslation";
+import { Menu, Search, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useTranslation();
 
   return (
     <header className="bg-white/95 backdrop-blur-sm border-b border-gray-200 sticky top-0 z-50">
       <div className="container mx-auto px-4">
-        {/* Top Bar */}
-        {/* <div className="hidden md:flex justify-between items-center py-2 text-sm text-gray-600 border-b border-gray-100">
-          <div className="flex items-center gap-4">
-            <span>📞 +977-1-XXXXXXX</span>
-            <span>📧 support@nepalmart.com</span>
-          </div>
-          <div className="flex items-center gap-4">
-            <span>🚚 Free Delivery in Kathmandu Valley</span>
-            <span>🇳🇵 Proudly Nepali</span>
-          </div>
-        </div> */}
 
         {/* Main Header */}
         <div className="flex items-center justify-between py-4">
@@ -40,7 +32,7 @@ const Header = () => {
           <div className="hidden md:flex flex-1 max-w-xl mx-8">
             <div className="relative w-full">
               <Input
-                placeholder="Search for products, brands, categories..."
+                placeholder={t('search_placeholder')}
                 className="pl-4 pr-12 py-3 rounded-md border-2 border-gray-200 focus:border-nepal-red transition-colors focus:outline-none outline-none"
               />
               <Button
@@ -54,16 +46,7 @@ const Header = () => {
 
           {/* Actions */}
           <div className="flex items-center gap-4">
-            <Link href="/wishlist">
-              <Button
-                variant="ghost"
-                size="sm"
-                className="hidden md:flex items-center gap-2"
-              >
-                <Heart className="h-5 w-5" />
-                <span className="hidden lg:inline">Wishlist</span>
-              </Button>
-            </Link>
+            <LanguageSwitcher />
 
             <Link href="/account">
               <Button
@@ -72,7 +55,7 @@ const Header = () => {
                 className="hidden md:flex items-center gap-2"
               >
                 <User className="h-5 w-5" />
-                <span className="hidden lg:inline">Account</span>
+                <span className="hidden lg:inline">{t("account")}</span>
               </Button>
             </Link>
 
@@ -100,7 +83,7 @@ const Header = () => {
         <div className="md:hidden pb-4">
           <div className="relative">
             <Input
-              placeholder="Search products..."
+              placeholder={t("search_placeholder")}
               className="pl-4 pr-12 py-3 rounded-full border-2 border-gray-200"
             />
             <Button
@@ -111,35 +94,6 @@ const Header = () => {
             </Button>
           </div>
         </div>
-
-        {/* Navigation */}
-        {/* <nav className="hidden md:block pb-4">
-          <ul className="flex items-center gap-8 text-sm font-medium">
-            <li>
-              <Link
-                href="/electronics"
-                className="hover:text-nepal-red transition-colors"
-              >
-                Electronics
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/fashion"
-                className="hover:text-nepal-red transition-colors"
-              >
-                Fashion
-              </Link>
-            </li>
-            <li className="hover:text-nepal-red transition-colors">
-              Home & Garden
-            </li>
-            <li className="hover:text-nepal-red transition-colors">Sports</li>
-            <li className="hover:text-nepal-red transition-colors">Books</li>
-            <li className="hover:text-nepal-red transition-colors">Grocery</li>
-            <li className="text-nepal-red font-semibold">🔥 Hot Deals</li>
-          </ul>
-        </nav> */}
       </div>
     </header>
   );

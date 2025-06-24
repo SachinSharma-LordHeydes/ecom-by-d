@@ -1,15 +1,18 @@
 "use client";
 
 import { useAppDispatch, useAppSelector } from "@/app/lib/hooks";
+import AddToCartBtn from "@/components/buttons/AddToCartBtn";
 import { Button } from "@/components/ui/button";
+import { createApolloClient } from "@/lib/apolloClient";
+import { gql, useMutation } from "@apollo/client";
+import { useAuth } from "@clerk/nextjs";
 import { Filter, Heart, Star } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import AddToCartBtn from "../buttons/AddToCartBtn";
+import { useMemo, useState } from "react";
 
 const electronics = [
   {
-    id: 1,
+    id: "6654e152c91fe4726cbfc90d",
     name: "Samsung Galaxy S24 Ultra",
     price: "NPR 1,45,000",
     originalPrice: "NPR 1,65,000",
@@ -76,17 +79,60 @@ const electronics = [
   },
 ];
 
+const ADD_TO_CART = gql`
+  mutation addToCart($input: CartInput!) {
+    addToCart(input: $input) {
+      id
+      productName
+      productPrice
+      productDescription
+      productImages
+      features
+      discount
+      approveStatus
+      ratingAndReviews
+      likesAndDislikes
+      createdAt
+      updatedAt
+    }
+  }
+`;
+
 const Electronics = () => {
   const [sortBy, setSortBy] = useState("featured");
   const router = useRouter();
 
   const { value } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
-  const handleAddToCart = (
+
+  const { getToken } = useAuth();
+
+  // Create Apollo client with getToken
+  const client = useMemo(() => createApolloClient(getToken), [getToken]);
+  const [addToCart, { loading, error, data }] = useMutation(ADD_TO_CART, {
+    client,
+  });
+
+  const handleAddToCart = async (
     e: React.MouseEvent,
     product: (typeof electronics)[0]
   ) => {
     e.stopPropagation();
+
+    console.log(product.id);
+
+    try {
+      const response = await addToCart({
+        variables: {
+          input: {
+            productId: product.id,
+          },
+        },
+      });
+      console.log("Cart updated:", response.data.addToCart);
+    } catch (err) {
+      console.error("Error adding to cart:", err);
+    }
   };
 
   console.log(value);

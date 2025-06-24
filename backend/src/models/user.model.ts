@@ -42,13 +42,13 @@ const UserSchema = new mongoose.Schema<IUser>(
     cart: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Order",
+        ref: "Product",
       },
     ],
     wishList: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "Order",
+        ref: "Product",
       },
     ],
   },

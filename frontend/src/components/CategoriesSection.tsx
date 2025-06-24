@@ -1,6 +1,8 @@
+"use client"
 
 import React from 'react';
 import { Smartphone, Shirt, Home, Utensils, BookOpen, Gamepad2 } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 
 const categories = [
   {
@@ -8,6 +10,7 @@ const categories = [
     name: 'Electronics',
     count: '2,500+ items',
     color: 'from-blue-500 to-purple-600',
+    link:'/electronics'
   },
   {
     icon: Shirt,
@@ -42,6 +45,8 @@ const categories = [
 ];
 
 const CategoriesSection = () => {
+
+  const router=useRouter()
   return (
     <section className="py-5 bg-gray -50">
       <div className="container mx-auto px-4">
@@ -61,6 +66,7 @@ const CategoriesSection = () => {
                 key={category.name}
                 className="group cursor-pointer animate-fade-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
+                onClick={()=>{router.push(`${category?.link}`)}}
               >
                 <div className="bg-white rounded-2xl p-6 shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                   <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${category.color} flex items-center justify-center mb-4 mx-auto group-hover:scale-110 transition-transform duration-300`}>

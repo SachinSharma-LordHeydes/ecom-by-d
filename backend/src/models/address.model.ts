@@ -4,10 +4,10 @@ import { IAddress } from "../interfaces/modelsInterfaces/model.interface";
 
 const AddressSchema = new mongoose.Schema<IAddress>(
   {
-    provinceNumber: {
-      type: String,
-      required: true,
-    },
+    // provinceNumber: {
+    //   type: String,
+    //   required: true,
+    // },
     addressLabel: {
       type: String,
       required: true,
@@ -15,13 +15,13 @@ const AddressSchema = new mongoose.Schema<IAddress>(
     provinceName: {
       type: String,
       required: true,
-      validate: {
-        validator: function (provinceName: string) {
-          const provinceNumber = this.provinceNumber;
-          return PROVINCE_MAP[provinceNumber] === provinceName;
-        },
-        message: "Province name does not match the province number!",
-      },
+      // validate: {
+      //   validator: function (provinceName: string) {
+      //     const provinceNumber = this.provinceNumber;
+      //     return PROVINCE_MAP[provinceNumber] === provinceName;
+      //   },
+      //   message: "Province name does not match the province number!",
+      // },
     },
     pinCode: {
       type: String,

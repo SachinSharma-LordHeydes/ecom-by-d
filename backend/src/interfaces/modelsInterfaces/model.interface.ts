@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 export interface IAddress {
   addressLabel: string;
-  provinceNumber: string;
+  // provinceNumber: string;
   pinCode: string;
   landMark?: string;
   locality: string;
@@ -46,8 +46,6 @@ export interface IProfile {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  alternateNumber?: string;
-  address: mongoose.Types.ObjectId;
 }
 
 export interface IRatingAndReview {

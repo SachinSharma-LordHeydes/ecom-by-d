@@ -13,7 +13,7 @@ const products = [
     originalPrice: 'NPR 1,40,000',
     rating: 4.8,
     reviews: 124,
-    image: 'bg-gradient-to-br from-gray-800 to-black',
+    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&h=300&fit=crop',
     badge: 'Hot Deal',
     badgeColor: 'bg-red-500'
   },
@@ -101,7 +101,7 @@ const FeaturedProducts = () => {
               onClick={() => handleProductClick(product.id)}
             >
               {/* Product Image */}
-              <div className="relative p-6 pb-4">
+              {/* <div className="relative p-6 pb-4">
                 <div className={`${product.image} h-48 rounded-xl mb-4 relative overflow-hidden`}>
                   <div className={`absolute top-3 left-3 ${product.badgeColor} text-white px-3 py-1 rounded-full text-xs font-semibold`}>
                     {product.badge}
@@ -119,7 +119,9 @@ const FeaturedProducts = () => {
                     </Button>
                   </div>
                 </div>
-              </div>
+              </div> */}
+
+              <img className='flex justify-center items-center w-full' src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=300&h=300&fit=crop" alt="image" />
 
               {/* Product Info */}
               <div className="px-6 pb-6">
@@ -150,7 +152,7 @@ const FeaturedProducts = () => {
                   <span className="text-sm text-gray-500 line-through">{product.originalPrice}</span>
                 </div>
 
-                <Button 
+                {/* <Button 
                   className="w-full bg-nepal-red hover:bg-nepal-crimson transition-colors"
                   size="sm"
                   onClick={(e) => {
@@ -159,7 +161,7 @@ const FeaturedProducts = () => {
                 >
                   <ShoppingCart className="h-4 w-4 mr-2" />
                   Add to Cart
-                </Button>
+                </Button> */}
               </div>
             </div>
           ))}
